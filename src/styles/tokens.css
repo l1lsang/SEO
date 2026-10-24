@@ -1,0 +1,96 @@
+/* Figma 변수(Tokens·Dimensions 컬렉션)와 같은 이름으로 옮긴 디자인 토큰 */
+:root {
+  /* bg */
+  --bg-canvas: #ffffff;
+  --bg-subtle: #f7f8f9;
+  --bg-muted: #f1f2f4;
+  --bg-inverse: #17181b;
+  --bg-inverse-raised: #212226;
+  --bg-brand: #26282d;
+  --bg-brand-subtle: #f5fae8;
+  --bg-accent: #c8f25a;
+  --bg-accent-hover: #b5e43c;
+  --bg-accent-subtle: #f1fbd6;
+  --bg-code: #0f1012;
+
+  /* text */
+  --text-primary: #141518;
+  --text-secondary: #464950;
+  --text-tertiary: #6f737b;
+  --text-disabled: #9da1a8;
+  --text-brand: #4d7c0f;
+  --text-inverse: #ffffff;
+  --text-inverse-secondary: #a7abb3;
+  --text-on-accent: #17181b;
+  --text-accent: #c8f25a;
+
+  /* border */
+  --border-subtle: #e9ebed;
+  --border-default: #dfe1e4;
+  --border-strong: #c6c9ce;
+  --border-inverse: #34363c;
+  --border-brand: #4d7c0f;
+
+  /* channel */
+  --channel-google: #2a62e8;
+  --channel-google-subtle: #ecf2ff;
+  --channel-naver: #03c75a;
+  --channel-naver-text: #05893f;
+  --channel-naver-subtle: #e7f8ee;
+  --channel-ai: #4d7c0f;
+  --channel-ai-soft: #c8f25a;
+  --channel-ai-subtle: #f1fbd6;
+
+  /* status */
+  --status-success: #3f6212;
+  --status-success-subtle: #f5fae8;
+  --status-warning: #9a5b00;
+  --status-warning-subtle: #fff5e0;
+  --status-danger: #d2433a;
+  --status-danger-subtle: #fdedec;
+
+  /* code */
+  --code-text: #e6e8eb;
+  --code-comment: #7e828b;
+  --code-keyword: #c8f25a;
+
+  /* radius */
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-10: 10px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-full: 999px;
+
+  /* elevation */
+  --shadow-sm: 0 1px 2px rgb(20 21 24 / 0.06);
+  --shadow-md: 0 2px 4px -1px rgb(20 21 24 / 0.06), 0 12px 24px -4px rgb(20 21 24 / 0.08);
+  --shadow-lg: 0 4px 8px -2px rgb(20 21 24 / 0.08), 0 24px 48px -12px rgb(20 21 24 / 0.18);
+
+  /* type */
+  --font-sans: 'IBM Plex Sans KR', system-ui, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  /* layout */
+  --container: 1200px;
+  --gutter: 20px;
+  --section-y: 64px;
+  --header-h: 60px;
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 40px;
+    --section-y: 88px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-y: 120px;
+    --header-h: 76px;
+  }
+}
