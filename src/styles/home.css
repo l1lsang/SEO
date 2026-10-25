@@ -781,6 +781,7 @@
 /* ---------- AI section ---------- */
 .ai-section__body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr); /* auto 열이면 캐러셀 트랙 폭만큼 늘어나 섹션 밖으로 잘림 */
   gap: 24px;
 }
 

@@ -5,7 +5,7 @@ import { findRoute } from './routes'
 import { renderHead } from './seo'
 
 export { routes } from './routes'
-export { robotsTxt, sitemapXml } from './seo'
+export { llmsTxt, robotsTxt, rssXml, sitemapXml } from './seo'
 
 /** scripts/prerender.mjs가 경로마다 호출합니다. */
 export function render(path: string) {

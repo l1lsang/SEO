@@ -9,7 +9,7 @@ const clientDir = join(root, 'dist/client')
 const serverEntry = join(root, 'dist/server/entry-server.js')
 
 const template = await readFile(join(clientDir, 'index.html'), 'utf8')
-const { render, routes, sitemapXml, robotsTxt } = await import(pathToFileURL(serverEntry).href)
+const { render, routes, sitemapXml, robotsTxt, rssXml, llmsTxt } = await import(pathToFileURL(serverEntry).href)
 
 // 폰트 CSS는 렌더링을 막지 않도록 preload → stylesheet로 바꿔 불러옵니다.
 const manifestPath = join(clientDir, '.vite/manifest.json')
@@ -29,6 +29,7 @@ const fileFor = (path) => {
 }
 
 const warnings = []
+const seen = { title: new Map(), description: new Map() }
 for (const route of routes) {
   const { head, html } = render(route.path)
   const page = template.replace('<!--app-head-->', `${head}\n    ${fontHead}`).replace('<!--app-html-->', html)
@@ -43,10 +44,22 @@ for (const route of routes) {
     if (t < 24 || t > 36) warnings.push(`${route.path} title ${t}자`)
     if (d < 75 || d > 125) warnings.push(`${route.path} description ${d}자`)
   }
+  // 6·12장 기준: title·description은 페이지마다 고유, h1은 페이지당 하나
+  if (!route.noindex) {
+    for (const key of ['title', 'description']) {
+      const other = seen[key].get(route[key])
+      if (other) warnings.push(`${route.path} ${key}가 ${other}와 같음`)
+      else seen[key].set(route[key], route.path)
+    }
+  }
+  const h1 = html.match(/<h1[\s>]/g)?.length ?? 0
+  if (h1 !== 1) warnings.push(`${route.path} h1 ${h1}개`)
 }
 
 await writeFile(join(clientDir, 'sitemap.xml'), sitemapXml())
 await writeFile(join(clientDir, 'robots.txt'), robotsTxt())
+await writeFile(join(clientDir, 'rss.xml'), rssXml())
+await writeFile(join(clientDir, 'llms.txt'), llmsTxt())
 
-console.log(`prerendered ${routes.length} pages + sitemap.xml + robots.txt`)
-if (warnings.length) console.warn(`길이 기준 밖:\n  ${warnings.join('\n  ')}`)
+console.log(`prerendered ${routes.length} pages + sitemap.xml + robots.txt + rss.xml + llms.txt`)
+if (warnings.length) console.warn(`SEO 기준 밖:\n  ${warnings.join('\n  ')}`)
