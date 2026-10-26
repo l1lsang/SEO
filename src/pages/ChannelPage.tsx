@@ -17,7 +17,7 @@ export function ChannelPage({ channel, crumbs }: { channel: Channel; crumbs: Cru
           <h2 id="steps-title" className="prose-h2">
             할 일 순서
           </h2>
-          <ol className="step-list" data-reveal="stagger">
+          <ol className="step-list">
             {channel.steps.map((s, i) => (
               <li key={s.title}>
                 <span className="step-list__num">{i + 1}</span>
@@ -34,7 +34,7 @@ export function ChannelPage({ channel, crumbs }: { channel: Channel; crumbs: Cru
           <h2 id="related-chapters-title" className="prose-h2">
             관련 가이드
           </h2>
-          <ol className="chapter-list chapter-list--boxed" data-reveal="stagger">
+          <ol className="chapter-list chapter-list--boxed">
             {channel.related.map((no) => {
               const c = chapterByNo(no)
               return (
@@ -53,7 +53,7 @@ export function ChannelPage({ channel, crumbs }: { channel: Channel; crumbs: Cru
           </ol>
         </section>
 
-        <section className="references" aria-labelledby="tools-title" data-reveal="">
+        <section className="references" aria-labelledby="tools-title">
           <h2 id="tools-title">공식 도구와 문서</h2>
           <ul>
             {channel.tools.map((t) => (
@@ -67,7 +67,7 @@ export function ChannelPage({ channel, crumbs }: { channel: Channel; crumbs: Cru
           </ul>
         </section>
 
-        <div className="closing-card glow-border grain" data-reveal="">
+        <div className="closing-card">
           <p className="closing-card__title">{channel.name} 노출, 점검해 드릴까요?</p>
           <p>서치콘솔·서치어드바이저 데이터와 체크리스트로 막힌 곳을 찾아 드립니다.</p>
           <div className="btn-row">

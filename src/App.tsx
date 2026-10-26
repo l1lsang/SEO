@@ -2,7 +2,6 @@ import type { ReactNode } from 'react'
 import { BackToTop } from './components/BackToTop'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
-import { useGlobalMotion } from './hooks/useGlobalMotion'
 import { ChannelPage } from './pages/ChannelPage'
 import { ChapterPage } from './pages/ChapterPage'
 import { GuideHubPage } from './pages/GuideHubPage'
@@ -13,7 +12,6 @@ import { breadcrumbsFor, findRoute } from './routes'
 export default function App({ path }: { path: string }) {
   const route = findRoute(path)
   const crumbs = breadcrumbsFor(route)
-  useGlobalMotion()
 
   let page: ReactNode
   switch (route.kind) {

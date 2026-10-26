@@ -4,7 +4,6 @@ import { ButtonLink } from '../components/ButtonLink'
 import { ChecklistSummary } from '../components/Checklist'
 import { Icon } from '../components/Icon'
 import { Byline, PageHeader } from '../components/PageHeader'
-import { ReadingProgress } from '../components/ReadingProgress'
 import { Lines } from '../components/Rich'
 import { Toc, type TocItem } from '../components/Toc'
 import { CHAPTERS, chapterByNo } from '../content/chapters'
@@ -29,7 +28,6 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
 
   return (
     <>
-      <ReadingProgress />
       <article className="chapter" aria-labelledby="page-title">
         <PageHeader crumbs={crumbs} title={chapter.h1} lead={chapter.lead}>
           <Byline published={chapter.published} updated={chapter.updated} />
@@ -38,7 +36,7 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
         <div className="container chapter__layout">
           <aside className="chapter__aside">
             <Toc items={toc} />
-            <div className="aside-cta" data-spotlight="">
+            <div className="aside-cta">
               <p className="aside-cta__title">
                 <Lines text={isAI ? 'AI 검색 노출,\n점검해 드릴까요?' : '우리 사이트 SEO,\n점검해 드릴까요?'} />
               </p>
@@ -50,10 +48,10 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
           </aside>
 
           <div className="chapter__content">
-            <section id="summary" className="key-answer" aria-labelledby="summary-title" data-reveal="">
+            <section id="summary" className="key-answer" aria-labelledby="summary-title">
               <h2 id="summary-title" className="key-answer__title">
                 <Icon name="list-checks" size={20} />
-                핵심 답 — 30초 요약
+                핵심 답 요약
               </h2>
               <ol>
                 {chapter.keyAnswer.map((a) => (
@@ -65,7 +63,7 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
             {chapter.no === 11 && <ChecklistSummary />}
 
             {chapter.sections.map((s) => (
-              <section key={s.id} id={s.id} className="prose-section" aria-labelledby={`${s.id}-title`} data-reveal="">
+              <section key={s.id} id={s.id} className="prose-section" aria-labelledby={`${s.id}-title`}>
                 <h2 id={`${s.id}-title`} className="prose-h2">
                   {s.title}
                 </h2>
@@ -74,7 +72,7 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
             ))}
 
             {chapter.references.length > 0 && (
-              <section id="references" className="references" aria-labelledby="references-title" data-reveal="">
+              <section id="references" className="references" aria-labelledby="references-title">
                 <h2 id="references-title">참고 자료</h2>
                 <ul>
                   {chapter.references.map((r) => (
@@ -89,13 +87,13 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
               </section>
             )}
 
-            <div className="closing-card glow-border grain" data-reveal="">
+            <div className="closing-card">
               <p className="closing-card__title">
                 <Lines text={chapter.closing.title} />
               </p>
               <p>{chapter.closing.text}</p>
               <div className="btn-row">
-                <ButtonLink href={mailto(subject)} variant="accent" magnetic>
+                <ButtonLink href={mailto(subject)} variant="accent">
                   이메일로 점검 문의
                 </ButtonLink>
                 <ButtonLink href={isAI ? '/checklist#ai' : '/checklist'} variant="ondark" arrow={false}>
@@ -104,7 +102,7 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
               </div>
             </div>
 
-            <nav className="pager-links" aria-label="장 이동" data-reveal="">
+            <nav className="pager-links" aria-label="장 이동">
               {sibling && (
                 <a href={sibling.path} className="pager-link">
                   <span className="pager-link__cap">
@@ -139,11 +137,11 @@ export function ChapterPage({ chapter, crumbs }: { chapter: Chapter; crumbs: Cru
               전체 가이드
             </ButtonLink>
           </div>
-          <div className="related__grid" data-reveal="stagger">
+          <div className="related__grid">
             {chapter.related.map((no) => {
               const r = chapterByNo(no)
               return (
-                <a key={no} href={r.path} className="related-card" data-spotlight="" data-tilt="5">
+                <a key={no} href={r.path} className="related-card">
                   <h3>{r.title}</h3>
                   <p>{r.description}</p>
                 </a>

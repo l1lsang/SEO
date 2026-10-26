@@ -9,7 +9,6 @@ export function ButtonLink({
   variant = 'primary',
   size = 'm',
   arrow = true,
-  magnetic = false,
   className,
 }: {
   href: string
@@ -17,8 +16,6 @@ export function ButtonLink({
   variant?: Variant
   size?: 'l' | 'm'
   arrow?: boolean
-  /** 커서 쪽으로 살짝 끌리는 효과(주요 행동 버튼에만) */
-  magnetic?: boolean
   className?: string
 }) {
   const external = /^https?:/.test(href)
@@ -26,7 +23,6 @@ export function ButtonLink({
     <a
       href={href}
       className={['btn', `btn--${variant}`, `btn--${size}`, className].filter(Boolean).join(' ')}
-      data-magnetic={magnetic ? '' : undefined}
       {...(external ? { target: '_blank', rel: 'noopener' } : {})}
     >
       <span>{children}</span>

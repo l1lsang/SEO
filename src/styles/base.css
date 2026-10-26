@@ -258,11 +258,6 @@ code {
   border-radius: var(--radius-10);
 }
 
-.icon-tile--glass {
-  background: rgb(200 242 90 / 0.14);
-  color: var(--text-accent);
-}
-
 .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -280,38 +275,7 @@ a:hover > .link-arrow .icon {
   transform: translateX(3px);
 }
 
-/* ---------- page transitions (같은 사이트 내 이동) ---------- */
-@view-transition {
-  navigation: auto;
-}
-
-::view-transition-old(root) {
-  animation: vt-out 0.22s var(--ease) both;
-}
-
-::view-transition-new(root) {
-  animation: vt-in 0.32s var(--ease) both;
-}
-
-@keyframes vt-out {
-  to {
-    opacity: 0;
-    transform: translateX(-16px);
-  }
-}
-
-@keyframes vt-in {
-  from {
-    opacity: 0;
-    transform: translateX(16px);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  @view-transition {
-    navigation: none;
-  }
-
   *,
   *::before,
   *::after {

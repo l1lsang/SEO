@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import { Icon } from './Icon'
 
 // 480×340 기준 좌표(%)
@@ -23,11 +22,11 @@ export function HubDiagram() {
           <line key={s.label} x1="240" y1="170" x2={(s.x / 100) * 480} y2={(s.y / 100) * 340} />
         ))}
       </svg>
-      {SPOKES.map((s, i) => (
+      {SPOKES.map((s) => (
         <span
           key={s.label}
           className="hub-diagram__spoke"
-          style={{ left: `${s.x}%`, top: `${s.y}%`, '--i': i } as CSSProperties}
+          style={{ left: `${s.x}%`, top: `${s.y}%` }}
           aria-hidden="true"
         >
           <Icon name="file-text" size={14} />

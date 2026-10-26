@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import { useState } from 'react'
 import { CHECKLIST, CHECKLIST_TOTAL } from '../content/checklist'
 import type { ChecklistGroupId } from '../content/types'
 import { useChecklist } from '../hooks/useChecklist'
@@ -24,7 +24,7 @@ export function ChecklistPreview() {
   const group = CHECKLIST[active]
 
   return (
-    <div className="checklist-card" data-reveal="">
+    <div className="checklist-card">
       <div className="seg-tabs" role="tablist" aria-label="체크리스트 분류">
         {CHECKLIST.map((g, i) => (
           <button
@@ -37,13 +37,12 @@ export function ChecklistPreview() {
             onClick={() => setActive(i)}
           >
             {g.label} {g.items.length}
-            {g.id === 'ai' && <span className="seg-tabs__dot" aria-hidden="true" />}
           </button>
         ))}
       </div>
-      <ul className="check-list check-list--swap" id="checklist-preview" role="tabpanel" key={group.id}>
-        {group.items.slice(0, 6).map((item, i) => (
-          <li key={item.id} style={{ '--r': i } as CSSProperties}>
+      <ul className="check-list" id="checklist-preview" role="tabpanel">
+        {group.items.slice(0, 6).map((item) => (
+          <li key={item.id}>
             <CheckItem id={item.id} text={item.text} checked={checked.includes(item.id)} onToggle={toggle} />
           </li>
         ))}

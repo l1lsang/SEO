@@ -1,20 +1,3 @@
-/* ---------- reading progress ---------- */
-.reading-progress {
-  position: sticky;
-  top: var(--header-h);
-  z-index: 40;
-  height: 3px;
-  background: var(--border-subtle);
-}
-
-.reading-progress span {
-  display: block;
-  height: 100%;
-  background: var(--border-brand);
-  transform: scaleX(var(--progress, 0));
-  transform-origin: left;
-}
-
 /* ---------- chapter layout ---------- */
 .chapter__layout {
   display: grid;
@@ -24,15 +7,15 @@
 
 .chapter__aside {
   position: sticky;
-  top: calc(var(--header-h) + 3px);
+  top: var(--header-h);
   z-index: 10;
   display: grid;
   gap: 20px;
   align-self: start;
   margin-inline: calc(-1 * var(--gutter));
   padding: 8px var(--gutter);
-  background: rgb(255 255 255 / 0.94);
-  backdrop-filter: blur(8px);
+  background: var(--bg-canvas);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .chapter__content {
@@ -63,7 +46,7 @@
     margin: 0;
     padding: 0;
     background: none;
-    backdrop-filter: none;
+    border: 0;
   }
 }
 

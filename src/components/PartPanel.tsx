@@ -1,4 +1,3 @@
-import type { CSSProperties } from 'react'
 import { chaptersInPart } from '../content/chapters'
 import { AI_TOPICS, type Part } from '../content/parts'
 import { ButtonLink } from './ButtonLink'
@@ -10,7 +9,7 @@ const pad = (n: number) => String(n).padStart(2, '0')
 export function PartPanel({ part, as: Heading = 'h3' }: { part: Part; as?: 'h2' | 'h3' }) {
   const ai = part.id === 5
   return (
-    <article className={ai ? 'part-panel part-panel--ai glow-border' : 'part-panel'} data-spotlight="">
+    <article className={ai ? 'part-panel part-panel--ai' : 'part-panel'}>
       <div className="part-panel__intro">
         <div className="part-panel__head">
           <span className="part-panel__numeral" aria-hidden="true">
@@ -29,7 +28,7 @@ export function PartPanel({ part, as: Heading = 'h3' }: { part: Part; as?: 'h2' 
         <ol className="chapter-list">
           {ai
             ? AI_TOPICS.map((t, i) => (
-                <li key={t.title} style={{ '--r': i } as CSSProperties}>
+                <li key={t.title}>
                   <a href={t.href} className="chapter-row">
                     <span className="chapter-row__no">{pad(i + 1)}</span>
                     <span className="chapter-row__title">{t.title}</span>
@@ -37,8 +36,8 @@ export function PartPanel({ part, as: Heading = 'h3' }: { part: Part; as?: 'h2' 
                   </a>
                 </li>
               ))
-            : chaptersInPart(part.id).map((c, i) => (
-                <li key={c.no} style={{ '--r': i } as CSSProperties}>
+            : chaptersInPart(part.id).map((c) => (
+                <li key={c.no}>
                   <a href={c.path} className="chapter-row">
                     <span className="chapter-row__no">{pad(c.no)}</span>
                     <span className="chapter-row__title">{c.title}</span>

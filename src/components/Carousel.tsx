@@ -12,7 +12,7 @@ export function Carousel({ children, className, dark }: { children: ReactNode; c
 
   return (
     <div className={['carousel', dark && 'carousel--dark', className].filter(Boolean).join(' ')}>
-      <ul className="carousel__track" ref={ref} data-reveal="stagger">
+      <ul className="carousel__track" ref={ref}>
         {items.map((child, i) => (
           <li className="carousel__item" key={i}>
             {child}
