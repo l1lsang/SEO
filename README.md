@@ -50,8 +50,10 @@ scripts/serve.mjs       로컬 미리보기 서버
 ## Vercel 배포
 
 1. 이 폴더를 GitHub 저장소에 올리고 Vercel에서 Import 합니다. 빌드 설정은 `vercel.json`에 있어 따로 고칠 필요가 없습니다(출력 폴더 `dist/client`, `.html` 없는 주소, 끝 슬래시 없음).
-2. canonical·sitemap 주소는 Vercel 프로덕션 도메인을 자동으로 씁니다. 커스텀 도메인을 연결하면 Vercel 환경 변수 `VITE_SITE_URL`(예: `https://example.com`)을 넣고 다시 배포하세요. 이때 Vercel Domains 설정에서 `*.vercel.app` 주소를 커스텀 도메인으로 리다이렉트해 두면 같은 페이지가 두 주소로 열리지 않습니다.
-3. 검색엔진 소유 확인을 HTML 태그 방식으로 할 때는 아래 환경 변수에 발급받은 코드(`content` 값만)를 넣고 다시 배포합니다. 홈 `<head>`에만 meta 태그가 들어갑니다.
+2. 메인 도메인은 `https://seoisfun.vercel.app`이고, canonical·sitemap·RSS·구조화 데이터 주소는 `vite.config.ts`에 이 값으로 고정돼 있습니다. 커스텀 도메인으로 옮길 때만 Vercel 환경 변수 `VITE_SITE_URL`(예: `https://example.com`)을 넣고 다시 배포하세요. 이때 Vercel Domains 설정에서 `*.vercel.app` 주소를 커스텀 도메인으로 리다이렉트해 두면 같은 페이지가 두 주소로 열리지 않습니다.
+3. 검색엔진 소유 확인은 두 방식 중 하나를 씁니다.
+   - **HTML 파일**: 발급받은 파일을 `public/`에 그대로 넣습니다(현재 구글·네이버 파일이 들어 있음). 확인이 끝나도 지우지 마세요. `cleanUrls` 때문에 `/파일명.html`은 `/파일명`으로 308 리다이렉트된 뒤 같은 내용이 열립니다. 확인이 실패하면 아래 HTML 태그 방식으로 바꾸세요.
+   - **HTML 태그**: 아래 환경 변수에 발급받은 코드(`content` 값만)를 넣고 다시 배포합니다. 홈 `<head>`에만 meta 태그가 들어갑니다.
 
 | 환경 변수 | 도구 |
 | --- | --- |

@@ -12,14 +12,10 @@ const woff2Only = (): Plugin => ({
   },
 })
 
-// canonical·sitemap에 쓰는 대표 주소.
-// 커스텀 도메인을 연결하면 Vercel 환경 변수 VITE_SITE_URL에 넣거나,
-// Vercel이 빌드 때 주는 프로덕션 도메인(VERCEL_PROJECT_PRODUCTION_URL)을 그대로 씁니다.
-const siteUrl =
-  process.env.VITE_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : 'https://seoisfun.vercel.app')
+// canonical·sitemap·RSS·구조화 데이터에 쓰는 대표 주소(메인 도메인).
+// Vercel에 다른 도메인이 붙어도 대표 주소가 저절로 바뀌지 않도록 고정해 둡니다.
+// 커스텀 도메인으로 옮길 때만 Vercel 환경 변수 VITE_SITE_URL에 새 주소를 넣고 다시 배포하세요.
+const siteUrl = process.env.VITE_SITE_URL ?? 'https://seoisfun.vercel.app'
 
 // https://vite.dev/config/
 export default defineConfig(({ isSsrBuild }) => ({
